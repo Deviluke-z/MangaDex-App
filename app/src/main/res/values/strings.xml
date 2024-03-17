@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">MangaDexApp</string>
+    <string name="app_title">MangaDex</string>
+    <string name="_day">Day</string>
+    <string name="_night">Night</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="_home">Home</string>
+    <string name="_search">Search</string>
+    <string name="_settings">Settings</string>
+    <string name="_login">Login</string>
+    <string name="_about_me">About me</string>
+    <string name="_about_mangadex">About MangaDex</string>
+    <string name="_bug_report">Bug Report</string>
+    <string name="_credit">This app using API provided by MangaDex</string>
 </resources>

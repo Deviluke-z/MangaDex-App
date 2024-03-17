@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="4dp"
+    tools:context=".presentation.view.SettingFragment">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/ivLogin"
+        android:layout_width="@dimen/_75dp"
+        android:layout_height="@dimen/_75dp"
+        android:background="@drawable/mangadex_logo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.05" />
+
+    <TextView
+        android:id="@+id/tvUserLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/_login"
+        android:textSize="32sp"
+        app:layout_constraintBottom_toBottomOf="@+id/ivLogin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.2"
+        app:layout_constraintStart_toEndOf="@+id/ivLogin"
+        app:layout_constraintTop_toTopOf="@+id/ivLogin" />
+
+    <ImageView
+        android:id="@+id/ivAboutMe"
+        android:layout_width="@dimen/_50dp"
+        android:layout_height="@dimen/_50dp"
+        android:background="@drawable/baseline_logo_dev_24"
+        app:layout_constraintBottom_toBottomOf="@+id/tvAboutMe"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tvAboutMe" />
+
+    <TextView
+        android:id="@+id/tvAboutMe"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_50dp"
+        android:layout_marginStart="@dimen/_4dp"
+        android:layout_marginTop="@dimen/_10dp"
+        android:gravity="center_vertical"
+        android:text="@string/_about_me"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ivAboutMe"
+        app:layout_constraintTop_toBottomOf="@+id/viewLine1" />
+
+    <ImageView
+        android:id="@+id/ivAppLogo"
+        android:layout_width="@dimen/_50dp"
+        android:layout_height="@dimen/_50dp"
+        android:background="@drawable/mangadex_logo"
+        app:layout_constraintBottom_toBottomOf="@+id/tvAboutCredit"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tvAboutCredit" />
+
+
+    <TextView
+        android:id="@+id/tvAboutCredit"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_50dp"
+        android:layout_marginStart="@dimen/_4dp"
+        android:layout_marginTop="@dimen/_10dp"
+        android:gravity="center_vertical"
+        android:text="@string/_about_mangadex"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ivAppLogo"
+        app:layout_constraintTop_toBottomOf="@+id/tvAboutMe" />
+
+    <ImageView
+        android:id="@+id/ivBugReport"
+        android:layout_width="@dimen/_50dp"
+        android:layout_height="@dimen/_50dp"
+        android:background="@drawable/baseline_bug_report_24"
+        app:layout_constraintBottom_toBottomOf="@+id/tvBugReport"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tvBugReport" />
+
+    <TextView
+        android:id="@+id/tvBugReport"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_50dp"
+        android:layout_marginStart="@dimen/_4dp"
+        android:layout_marginTop="@dimen/_10dp"
+        android:gravity="center_vertical"
+        android:text="@string/_bug_report"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ivBugReport"
+        app:layout_constraintTop_toBottomOf="@+id/tvAboutCredit" />
+
+    <TextView
+        android:id="@+id/tvCredit"
+        android:layout_width="wrap_content"
+        android:layout_height="75dp"
+        android:gravity="center"
+        android:text="@string/_credit"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <View
+        android:id="@+id/viewLine1"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/orange"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivLogin"
+        app:layout_constraintVertical_bias="0.1"
+        tools:layout_editor_absoluteX="4dp" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
