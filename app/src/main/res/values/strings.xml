@@ -13,4 +13,6 @@
     <string name="_about_mangadex">About MangaDex</string>
     <string name="_bug_report">Bug Report</string>
     <string name="_credit">This app using API provided by MangaDex</string>
+    <string name="_username">Username</string>
+    <string name="_password">Password</string>
 </resources>
