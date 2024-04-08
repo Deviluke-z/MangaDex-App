@@ -5,6 +5,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import duke.deviluke.mangadexapp.domain.usecases.GetRandomMangaUseCase
 import duke.deviluke.mangadexapp.domain.usecases.LoginUseCase
 import duke.deviluke.mangadexapp.presentation.viewmodel.MainViewModelFactory
 import javax.inject.Singleton
@@ -17,8 +18,9 @@ class FactoryModule {
     @Provides
     fun provideMainViewModelFactory(
         application: Application,
-        loginUseCase: LoginUseCase
+        loginUseCase: LoginUseCase,
+        getRandomMangaUseCase: GetRandomMangaUseCase
     ): MainViewModelFactory {
-        return MainViewModelFactory(application, loginUseCase)
+        return MainViewModelFactory(application, loginUseCase, getRandomMangaUseCase)
     }
 }

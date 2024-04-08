@@ -5,6 +5,8 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import duke.deviluke.mangadexapp.domain.repository.AuthDataRepository
+import duke.deviluke.mangadexapp.domain.repository.MangaDataRepository
+import duke.deviluke.mangadexapp.domain.usecases.GetRandomMangaUseCase
 import duke.deviluke.mangadexapp.domain.usecases.LoginUseCase
 import javax.inject.Singleton
 
@@ -18,5 +20,13 @@ class UseCaseModule {
         authDataRepository: AuthDataRepository
     ): LoginUseCase {
         return LoginUseCase(authDataRepository)
+    }
+
+    @Singleton
+    @Provides
+    fun provideGetRandomMangaUseCase(
+        mangaDataRepository: MangaDataRepository
+    ): GetRandomMangaUseCase {
+        return GetRandomMangaUseCase(mangaDataRepository)
     }
 }

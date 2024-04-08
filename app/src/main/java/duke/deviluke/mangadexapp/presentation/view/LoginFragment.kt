@@ -15,7 +15,6 @@ import duke.deviluke.mangadexapp.BuildConfig
 import duke.deviluke.mangadexapp.MangaDexApplication.Companion.DEBUG_TAG
 import duke.deviluke.mangadexapp.R
 import duke.deviluke.mangadexapp.data.model.AuthData
-import duke.deviluke.mangadexapp.data.modelJson.toModel
 import duke.deviluke.mangadexapp.data.util.Resource
 import duke.deviluke.mangadexapp.databinding.FragmentLoginBinding
 import duke.deviluke.mangadexapp.presentation.viewmodel.MainViewModel
@@ -73,14 +72,10 @@ class LoginFragment : Fragment() {
             when (response) {
                 is Resource.Success -> {
                     Log.d(DEBUG_TAG, "Success")
-                    response.data?.let {
-                        val token = it.toModel()
-                        Log.d(
-                            DEBUG_TAG,
-                            "accessToken: ${token.accessToken}, refreshToken: ${token.refreshToken}"
-                        )
-                        findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToHomeFragment())
-                    }
+//                    response.data?.let {
+//                        findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToHomeFragment())
+//                    }
+                    findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToHomeFragment())
                 }
 
                 is Resource.Loading -> {
@@ -90,6 +85,7 @@ class LoginFragment : Fragment() {
                 is Resource.Failure -> {
                     Log.d(DEBUG_TAG, "Failure")
                     response.message?.let {
+                        Log.d(DEBUG_TAG, "An occur happened: $it")
                         Snackbar.make(
                             requireContext(),
                             binding.root,
@@ -98,7 +94,7 @@ class LoginFragment : Fragment() {
                         ).show()
                     }
                 }
-            }
+        }
         })
     }
 }

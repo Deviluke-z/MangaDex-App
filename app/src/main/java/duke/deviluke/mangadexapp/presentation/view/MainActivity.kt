@@ -9,6 +9,7 @@ import androidx.navigation.ui.setupWithNavController
 import dagger.hilt.android.AndroidEntryPoint
 import duke.deviluke.mangadexapp.R
 import duke.deviluke.mangadexapp.databinding.ActivityMainBinding
+import duke.deviluke.mangadexapp.presentation.adapter.GenresAdapter
 import duke.deviluke.mangadexapp.presentation.viewmodel.MainViewModel
 import duke.deviluke.mangadexapp.presentation.viewmodel.MainViewModelFactory
 import javax.inject.Inject
@@ -20,6 +21,8 @@ class MainActivity : AppCompatActivity() {
     lateinit var viewModel: MainViewModel
     @Inject
     lateinit var factory: MainViewModelFactory
+    @Inject
+    lateinit var genresAdapter: GenresAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

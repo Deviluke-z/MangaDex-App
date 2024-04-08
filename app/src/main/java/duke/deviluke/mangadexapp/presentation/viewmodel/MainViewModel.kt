@@ -10,8 +10,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import duke.deviluke.mangadexapp.MangaDexApplication.Companion.DEBUG_TAG
 import duke.deviluke.mangadexapp.data.model.AuthData
+import duke.deviluke.mangadexapp.data.modelJson.MangaDataJson
 import duke.deviluke.mangadexapp.data.modelJson.TokenJson
 import duke.deviluke.mangadexapp.data.util.Resource
+import duke.deviluke.mangadexapp.domain.usecases.GetRandomMangaUseCase
 import duke.deviluke.mangadexapp.domain.usecases.LoginUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
@@ -19,7 +21,8 @@ import kotlinx.coroutines.launch
 
 class MainViewModel(
     private val application: Application,
-    private val loginUseCase: LoginUseCase
+    private val loginUseCase: LoginUseCase,
+    private val getRandomMangaUseCase: GetRandomMangaUseCase
 ) : AndroidViewModel(application) {
 
     companion object {
@@ -27,6 +30,7 @@ class MainViewModel(
     }
 
     val authToken: MutableLiveData<Resource<TokenJson>> = MutableLiveData()
+    val randomMangaData: MutableLiveData<Resource<MangaDataJson>> = MutableLiveData()
 
     fun getAuthToken(authData: AuthData) = viewModelScope.launch(Dispatchers.IO) {
         Log.d(DEBUG_TAG, "MainViewModel: getAuthToken()")
@@ -42,6 +46,23 @@ class MainViewModel(
             }
         } catch (e: Exception) {
             authToken.postValue(Resource.Failure(e.message.toString()))
+        }
+    }
+
+    fun getRandomMangaData() = viewModelScope.launch(Dispatchers.IO) {
+        Log.d(DEBUG_TAG, "MainViewModel: getRandomMangaData()")
+        try {
+            if (isNetworkAvailable(application)) {
+                randomMangaData.postValue(Resource.Loading())
+                val result = viewModelScope.async {
+                    getRandomMangaUseCase.execute()
+                }
+                randomMangaData.postValue(result.await())
+            } else {
+                randomMangaData.postValue(Resource.Failure(INTERNET_NOT_AVAILABLE_MESSAGE))
+            }
+        } catch (e: Exception) {
+            randomMangaData.postValue(Resource.Failure(e.message.toString()))
         }
     }
 
