@@ -2,6 +2,7 @@ package duke.deviluke.mangadexapp.data.modelJson
 
 
 import com.google.gson.annotations.SerializedName
+import duke.deviluke.mangadexapp.data.model.ListMangaData
 import duke.deviluke.mangadexapp.data.model.MangaData
 
 data class MangaDataJson(
@@ -99,8 +100,123 @@ data class MangaDataJson(
                 data class Attributes(
                     @SerializedName("name")
                     val name: Name?,
-                    @SerializedName("description")
-                    val description: List<Any?>?,
+                    @SerializedName("group")
+                    val group: String?,
+                    @SerializedName("version")
+                    val version: Int?
+                ) {
+                    data class Name(
+                        @SerializedName("en")
+                        val en: String?
+                    )
+                }
+            }
+        }
+
+        data class Relationship(
+            @SerializedName("id")
+            val id: String?,
+            @SerializedName("type")
+            val type: String?
+        )
+    }
+}
+
+data class ListMangaDataJson(
+    @SerializedName("result")
+    val result: String?,
+    @SerializedName("response")
+    val response: String?,
+    @SerializedName("data")
+    val `data`: List<Data?>?
+) {
+    data class Data(
+        @SerializedName("id")
+        val id: String?,
+        @SerializedName("type")
+        val type: String?,
+        @SerializedName("attributes")
+        val attributes: Attributes?,
+        @SerializedName("relationships")
+        val relationships: List<Relationship?>?
+    ) {
+        data class Attributes(
+            @SerializedName("title")
+            val title: Title?,
+            @SerializedName("altTitles")
+            val altTitles: List<AltTitle?>?,
+            @SerializedName("description")
+            val description: Description?,
+            @SerializedName("isLocked")
+            val isLocked: Boolean?,
+            @SerializedName("links")
+            val links: Links?,
+            @SerializedName("originalLanguage")
+            val originalLanguage: String?,
+            @SerializedName("lastVolume")
+            val lastVolume: String?,
+            @SerializedName("lastChapter")
+            val lastChapter: String?,
+            @SerializedName("publicationDemographic")
+            val publicationDemographic: Any?,
+            @SerializedName("status")
+            val status: String?,
+            @SerializedName("year")
+            val year: Int?,
+            @SerializedName("contentRating")
+            val contentRating: String?,
+            @SerializedName("tags")
+            val tags: ArrayList<Tag?>?,
+            @SerializedName("state")
+            val state: String?,
+            @SerializedName("chapterNumbersResetOnNewVolume")
+            val chapterNumbersResetOnNewVolume: Boolean?,
+            @SerializedName("createdAt")
+            val createdAt: String?,
+            @SerializedName("updatedAt")
+            val updatedAt: String?,
+            @SerializedName("version")
+            val version: Int?,
+            @SerializedName("availableTranslatedLanguages")
+            val availableTranslatedLanguages: List<String?>?,
+            @SerializedName("latestUploadedChapter")
+            val latestUploadedChapter: String?
+        ) {
+            data class Title(
+                @SerializedName("en")
+                val en: String?
+            )
+
+            data class AltTitle(
+                @SerializedName("zh")
+                val zh: String?
+            )
+
+            data class Description(
+                @SerializedName("en")
+                val en: String?
+            )
+
+            data class Links(
+                @SerializedName("al")
+                val al: String?,
+                @SerializedName("ap")
+                val ap: String?
+            )
+
+            data class Tag(
+                @SerializedName("id")
+                val id: String?,
+                @SerializedName("type")
+                val type: String?,
+                @SerializedName("attributes")
+                val attributes: Attributes?,
+                @SerializedName("relationships")
+                val relationships: List<Any?>?
+            ) {
+                data class Attributes(
+                    @SerializedName("name")
+                    val name: Name?,
                     @SerializedName("group")
                     val group: String?,
                     @SerializedName("version")
@@ -181,4 +297,66 @@ fun MangaDataJson.Data.toModel(): MangaData.Data =
 fun MangaDataJson.toModel(): MangaData =
     MangaData(
         data = data?.toModel() ?: MangaData.Data()
+    )
+
+fun ListMangaDataJson.Data.Attributes.Tag.Attributes.Name.toModel(): ListMangaData.Data.Attributes.Tag.Attributes.Name =
+    ListMangaData.Data.Attributes.Tag.Attributes.Name(
+        en = en ?: ""
+    )
+
+fun ListMangaDataJson.Data.Attributes.Tag.Attributes.toModel(): ListMangaData.Data.Attributes.Tag.Attributes =
+    ListMangaData.Data.Attributes.Tag.Attributes(
+        name = name?.toModel() ?: ListMangaData.Data.Attributes.Tag.Attributes.Name()
+    )
+
+fun ListMangaDataJson.Data.Attributes.Tag.toModel(): ListMangaData.Data.Attributes.Tag =
+    ListMangaData.Data.Attributes.Tag(
+        attributes = attributes?.toModel() ?: ListMangaData.Data.Attributes.Tag.Attributes()
+    )
+
+fun ListMangaDataJson.Data.Attributes.Links.toModel(): ListMangaData.Data.Attributes.Links =
+    ListMangaData.Data.Attributes.Links(
+        al = al ?: "",
+        ap = ap ?: ""
+    )
+
+fun ListMangaDataJson.Data.Attributes.Description.toModel(): ListMangaData.Data.Attributes.Description =
+    ListMangaData.Data.Attributes.Description(
+        en = en ?: ""
+    )
+
+fun ListMangaDataJson.Data.Attributes.Title.toModel(): ListMangaData.Data.Attributes.Title =
+    ListMangaData.Data.Attributes.Title(
+        en = en ?: ""
+    )
+
+fun ListMangaDataJson.Data.Attributes.toModel(): ListMangaData.Data.Attributes =
+    ListMangaData.Data.Attributes(
+        title = title?.toModel() ?: ListMangaData.Data.Attributes.Title(),
+        description = description?.toModel() ?: ListMangaData.Data.Attributes.Description(),
+        links = links?.toModel() ?: ListMangaData.Data.Attributes.Links(),
+        lastVolume = lastVolume ?: "",
+        lastChapter = lastChapter ?: "",
+        status = status ?: "",
+        year = year ?: 0,
+        tags = tags?.filterNotNull()?.map {
+            it.toModel()
+        }?.let { ArrayList(it) } ?: arrayListOf(),
+        createdAt = createdAt ?: "",
+        updatedAt = updatedAt ?: ""
+    )
+
+fun ListMangaDataJson.Data.toModel(): ListMangaData.Data =
+    ListMangaData.Data(
+        id = id ?: "",
+        attributes = attributes?.toModel() ?: ListMangaData.Data.Attributes(
+            tags = arrayListOf()
+        )
+    )
+
+fun ListMangaDataJson.toModel(): ListMangaData =
+    ListMangaData(
+        data = data?.filterNotNull()?.map {
+            it.toModel()
+        }?.let { ArrayList(it) } ?: arrayListOf()
     )

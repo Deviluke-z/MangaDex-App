@@ -5,6 +5,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import duke.deviluke.mangadexapp.presentation.adapter.GenresAdapter
+import duke.deviluke.mangadexapp.presentation.adapter.LatestMangaListAdapter
 import javax.inject.Singleton
 
 @Module
@@ -15,5 +16,11 @@ class AdapterModule {
     @Provides
     fun provideGenresAdapter(): GenresAdapter {
         return GenresAdapter()
+    }
+
+    @Singleton
+    @Provides
+    fun provideLatestMangaListAdapter(): LatestMangaListAdapter {
+        return LatestMangaListAdapter()
     }
 }

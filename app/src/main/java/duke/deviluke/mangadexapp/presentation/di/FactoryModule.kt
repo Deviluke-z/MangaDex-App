@@ -5,6 +5,8 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import duke.deviluke.mangadexapp.domain.usecases.GetLatestMangaListUseCase
+import duke.deviluke.mangadexapp.domain.usecases.GetMangaCoverPathUseCase
 import duke.deviluke.mangadexapp.domain.usecases.GetRandomMangaUseCase
 import duke.deviluke.mangadexapp.domain.usecases.LoginUseCase
 import duke.deviluke.mangadexapp.presentation.viewmodel.MainViewModelFactory
@@ -19,8 +21,16 @@ class FactoryModule {
     fun provideMainViewModelFactory(
         application: Application,
         loginUseCase: LoginUseCase,
-        getRandomMangaUseCase: GetRandomMangaUseCase
+        getRandomMangaUseCase: GetRandomMangaUseCase,
+        getLatestMangaListUseCase: GetLatestMangaListUseCase,
+        getMangaCoverPathUseCase: GetMangaCoverPathUseCase
     ): MainViewModelFactory {
-        return MainViewModelFactory(application, loginUseCase, getRandomMangaUseCase)
+        return MainViewModelFactory(
+            application,
+            loginUseCase,
+            getRandomMangaUseCase,
+            getLatestMangaListUseCase,
+            getMangaCoverPathUseCase
+        )
     }
 }

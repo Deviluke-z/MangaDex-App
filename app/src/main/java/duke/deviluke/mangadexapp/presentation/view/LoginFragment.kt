@@ -7,8 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import duke.deviluke.mangadexapp.BuildConfig
@@ -66,35 +67,35 @@ class LoginFragment : Fragment() {
         }
     }
 
-    private fun getAuthToken(authData: AuthData) {
+    private suspend fun getAuthToken(authData: AuthData) {
+        Log.d(DEBUG_TAG, "LoginFragment: getAuthToken()")
         viewModel.getAuthToken(authData)
-        viewModel.authToken.observe(viewLifecycleOwner, Observer { response ->
-            when (response) {
-                is Resource.Success -> {
-                    Log.d(DEBUG_TAG, "Success")
-//                    response.data?.let {
-//                        findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToHomeFragment())
-//                    }
-                    findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToHomeFragment())
-                }
+        repeatOnLifecycle(Lifecycle.State.STARTED) {
+            viewModel.authToken.collect { response ->
+                when (response) {
+                    is Resource.Success -> {
+                        Log.d(DEBUG_TAG, "LoginFragment: getAuthToken(): Success")
+                        findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToHomeFragment())
+                    }
 
-                is Resource.Loading -> {
-                    Log.d(DEBUG_TAG, "Loading")
-                }
+                    is Resource.Loading -> {
+                        Log.d(DEBUG_TAG, "LoginFragment: getAuthToken(): Loading")
+                    }
 
-                is Resource.Failure -> {
-                    Log.d(DEBUG_TAG, "Failure")
-                    response.message?.let {
-                        Log.d(DEBUG_TAG, "An occur happened: $it")
-                        Snackbar.make(
-                            requireContext(),
-                            binding.root,
-                            "An occur happened: $it",
-                            Snackbar.LENGTH_SHORT
-                        ).show()
+                    is Resource.Failure -> {
+                        Log.d(DEBUG_TAG, "LoginFragment: getAuthToken(): Failure")
+                        response.message?.let {
+                            Log.d(DEBUG_TAG, "An occur happened: $it")
+                            Snackbar.make(
+                                requireContext(),
+                                binding.root,
+                                "An occur happened: $it",
+                                Snackbar.LENGTH_SHORT
+                            ).show()
+                        }
                     }
                 }
+            }
         }
-        })
     }
 }

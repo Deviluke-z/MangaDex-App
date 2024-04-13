@@ -33,48 +33,52 @@
             app:layout_constraintStart_toEndOf="@+id/ivAppLogo"
             app:layout_constraintTop_toTopOf="@+id/ivAppLogo" />
 
-        <TextView
-            android:id="@+id/tvTitleRandom"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/title_random"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.1"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ivAppLogo"
-            app:layout_constraintVertical_bias="0.05" />
-
-        <Button
-            android:id="@+id/btnRandom"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/orange"
-            android:text="@string/_reroll"
-            app:layout_constraintBottom_toBottomOf="@+id/tvTitleRandom"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.8"
-            app:layout_constraintStart_toEndOf="@+id/tvTitleRandom"
-            app:layout_constraintTop_toTopOf="@+id/tvTitleRandom" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/randomLayout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/_4dp"
             android:paddingHorizontal="@dimen/_4dp"
+            app:layout_constraintBottom_toTopOf="@+id/constraintLayout3"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btnRandom">
+            app:layout_constraintTop_toBottomOf="@+id/ivAppLogo">
+
+            <TextView
+                android:id="@+id/tvTitleRandom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/title_random"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.05" />
+
+            <Button
+                android:id="@+id/btnRandom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/orange"
+                android:text="@string/_reroll"
+                app:layout_constraintBottom_toBottomOf="@+id/tvTitleRandom"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.8"
+                app:layout_constraintStart_toEndOf="@+id/tvTitleRandom"
+                app:layout_constraintTop_toTopOf="@+id/tvTitleRandom" />
 
             <ImageView
                 android:id="@+id/ivCover"
                 android:layout_width="150dp"
                 android:layout_height="200dp"
+                android:background="@drawable/sample_cover"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:background="@drawable/sample_cover" />
+                app:layout_constraintTop_toBottomOf="@id/btnRandom" />
 
             <TextView
                 android:id="@+id/tvTitle"
@@ -86,7 +90,7 @@
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/ivCover"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnRandom"
                 tools:text="Sousou Frieren" />
 
             <androidx.recyclerview.widget.RecyclerView
@@ -116,6 +120,59 @@
                 tools:text="The Blessing of Heaven, A Prodigal Genius, Edenberg Dog.To win the love of her adopted parents, Elena dedicated her skills to the Edenberg name. If anything posed to harm the family, Elena would even kill the people she loved. In the end, Elena\u2019s \u201cfamily\u201d chose to sacrifice her. No longer having the will to live, Elena\u2019s dying wish was to destroy the Edenberg family name. Time reset and Elena now has a chance to do just that with the help of the mysterious Emperor who heard her wish.  \n  \n\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014  \n  \nA family not connected by blood but with ink. I do not desire these abilities of mine. I only want love from them however, they cruelly used everything I had and abandoned me at the end.  \n  \nI was offered as a sacrifice.  \n\u201cThose eyes.\u201d  \nBefore death approached after I was sacrificed, I met him.  \n\u201cYou have no will to live.\u201d  \nHe breathed in the scent from my neck as if it was the most fragrant thing.  \n\u201cYour last wishes, child.\u201d  \n  \nThose were the last words I heard in this life. I thought that moment was extremely awful. If only I was allowed to live one more time. Then. This time I will throw you people away first. Like a miracle, I returned to the past" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/_4dp"
+            android:paddingHorizontal="@dimen/_4dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.95">
+
+            <TextView
+                android:id="@+id/tvLastUpdate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/_latest_update"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.05" />
+
+            <Button
+                android:id="@+id/btnUpdateLatest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/orange"
+                android:text="@string/_update"
+                app:layout_constraintBottom_toBottomOf="@+id/tvLastUpdate"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.8"
+                app:layout_constraintStart_toEndOf="@+id/tvLastUpdate"
+                app:layout_constraintTop_toTopOf="@+id/tvLastUpdate" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rcvLatestUpdate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnUpdateLatest"
+                tools:listitem="@layout/item_cover" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

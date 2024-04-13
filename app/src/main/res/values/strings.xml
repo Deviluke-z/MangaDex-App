@@ -17,4 +17,6 @@
     <string name="_password">Password</string>
     <string name="title_random">Random Manga</string>
     <string name="_reroll">I\'m feeling lucky</string>
+    <string name="_latest_update">Latest Update</string>
+    <string name="_update">Update</string>
 </resources>

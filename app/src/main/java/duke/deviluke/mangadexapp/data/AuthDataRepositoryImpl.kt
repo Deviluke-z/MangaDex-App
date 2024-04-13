@@ -5,14 +5,16 @@ import duke.deviluke.mangadexapp.data.modelJson.TokenJson
 import duke.deviluke.mangadexapp.data.repository.dataSource.AuthRemoteDataSource
 import duke.deviluke.mangadexapp.data.util.Resource
 import duke.deviluke.mangadexapp.domain.repository.AuthDataRepository
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 import retrofit2.Response
 
 class AuthDataRepositoryImpl(
     private val authRemoteDataSource: AuthRemoteDataSource
 ) : AuthDataRepository {
 
-    override suspend fun postAuthData(authData: AuthData): Resource<TokenJson> {
-        return responseToResource(authRemoteDataSource.postAuthData(authData))
+    override suspend fun postAuthData(authData: AuthData): Flow<Resource<TokenJson>> = flow {
+        emit(responseToResource(authRemoteDataSource.postAuthData(authData)))
     }
 
     fun responseToResource(response: Response<TokenJson>): Resource<TokenJson> {

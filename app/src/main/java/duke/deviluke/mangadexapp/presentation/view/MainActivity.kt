@@ -10,6 +10,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import duke.deviluke.mangadexapp.R
 import duke.deviluke.mangadexapp.databinding.ActivityMainBinding
 import duke.deviluke.mangadexapp.presentation.adapter.GenresAdapter
+import duke.deviluke.mangadexapp.presentation.adapter.LatestMangaListAdapter
 import duke.deviluke.mangadexapp.presentation.viewmodel.MainViewModel
 import duke.deviluke.mangadexapp.presentation.viewmodel.MainViewModelFactory
 import javax.inject.Inject
@@ -23,6 +24,8 @@ class MainActivity : AppCompatActivity() {
     lateinit var factory: MainViewModelFactory
     @Inject
     lateinit var genresAdapter: GenresAdapter
+    @Inject
+    lateinit var latestMangaListAdapter: LatestMangaListAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
